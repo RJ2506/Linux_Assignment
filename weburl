@@ -1,0 +1,23 @@
+#!/bin/bash
+url=$1
+
+case "$url" in
+  $1)
+    shift
+
+  while getopts ":f" opt; do
+    case ${opt} in
+      f ) 
+          wget -O weblinks "$url"
+          cat weblinks | grep -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u > display
+        cat display
+        ;;
+    esac
+  done
+  
+if [ $OPTIND -eq 1 ] ; then 
+          wget -O weblinks "$url"
+          cat weblinks | grep -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u; fi
+shift $((OPTIND -1 ))
+  ;;
+esac
