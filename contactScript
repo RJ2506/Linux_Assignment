@@ -1,0 +1,71 @@
+#!/bin/bash
+
+
+
+#check the directory if it exist
+
+if [[ -d contacts ]]; then
+    exit=0 #set the exit to 0 (success) 
+    while [[ $exit -ne 1 ]] ; do
+      clear
+      echo "Please select an option"
+      echo ""
+      echo "[a] for adding a new contact"
+      echo ""
+      echo "[r] for remove a contact"
+      echo ""
+      echo "[s] to search for specifict information"
+      echo ""
+      echo "[d] to display the list of contact"
+      echo ""
+      echo "[e] to exit "
+      echo ""
+      read -e -p "Enter your option: " choice #ask the user to choose an option
+
+      case $choice in
+        a )
+          ./addContact 
+          exit 0
+          ;;
+
+
+        r )
+          ./removeContact 
+          exit 0
+          ;;
+
+        s )
+          ./searchContact 
+          exit 0
+          ;;  
+
+        d )
+          echo ""
+          echo "Contact List"
+          cat ./contacts/contactList 
+          exit 0
+          ;;
+                  
+        e )
+          exit=1 ;;
+      
+        \? )
+          echo "Invalid option: please choose from [arse]" 
+          exit 1
+          ;;
+      
+      esac
+      done
+      exit 0
+    else 
+        
+        echo ""
+        echo "creating a directory for contacts and a contactlist file..."
+        mkdir contacts  && touch contactList
+        echo ""
+        echo "done"
+        echo "restart the program"
+        exit 0
+      fi
+
+      
