@@ -1,9 +1,11 @@
 #!/bin/bash
 
+#ask the user a name to remove
 echo ""
 read -e -p "Enter the name of the contact you want to remove: " name
 
-gawk -i inplace '!/'$name'/' ./contacts/contactList
+#check the name in the contactList then delete it using gawk (GNU awk) 
+gawk -i inplace '!/'$name'/' ./contacts/contactList #GAWK is a feature which doesn't require to create temp file
 
 echo "$name is deleted from the contact list"
 
