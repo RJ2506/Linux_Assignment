@@ -3,9 +3,9 @@
 echo ""
 read -e -p "Enter the name: " name
 read -e -p "Enter the phone number: " phone
-read -e -p "Enter the mail: " mail
+read -e -p "Enter the email: " email
 
-echo "$name:$phone:$mail" >> ./contacts/contactList
+echo "$name:$phone:$email" >> ./contacts/contactList
 echo ""
 echo "New contact list added"
 exit 0
