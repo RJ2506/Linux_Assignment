@@ -14,10 +14,10 @@ read -e -p "Choose an option: " selection
 case $selection in
   p )
     
-    awk 'BEGIN { FS=":"; print "Phone"\n-----------------} /'^$name'/ {print $2;}' ./contacts/contactList;;
+    awk 'BEGIN { FS=":"; print "Phone\n-----------------";} /'^$name'/ {print $2;}' ./contacts/contactList;;
 
   m )
-    awk 'BEGIN {FS=":"; print "Email"\n-----------------} /'^$name'/ {print $3;}' ./contacts/contactList;;
+    awk 'BEGIN {FS=":"; print "Email\n-----------------";} /'^$name'/ {print $3;}' ./contacts/contactList;;
 
   * ) 
     echo "Invalid Option: $OPTARG use: [pm]"
