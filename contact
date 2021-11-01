@@ -84,7 +84,7 @@ else
     
     echo ""
     echo "creating a directory for contacts and a file for contactlist ..."
-    mkdir contacts && touch conatactList
+    mkdir contacts && touch ./contacts/contactList
     echo ""
     echo "done"
     echo "restart the program"
