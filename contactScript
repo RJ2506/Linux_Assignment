@@ -40,9 +40,7 @@ if [[ -d contacts ]]; then
           ;;  
 
         d )
-          echo ""
-          echo "Contact List"
-          cat ./contacts/contactList 
+          ./displayContact
           exit 0
           ;;
                   
