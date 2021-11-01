@@ -15,10 +15,10 @@ case "$url" in
           wget -O weblinks "$url" #download the html file from the url provided the store it to the weblinks file
           cat weblinks | grep -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u > display
           cat display #displays the output
-        ;;
+        exit 0 ;;
            #propmpts a user an error message if they enter different flags
-      \? ) echo "Invalid option: $OPTARG use: [-f]" 1>&2 
-        ;;
+      \? ) echo "Invalid option: $OPTARG use: [-f]" 
+        exit 1 ;;
     esac
   done
   
@@ -27,5 +27,5 @@ if [[ $OPTIND -eq 1 ]] ; then
           wget -O weblinks "$url" #download the html file from the url provided then store it to the weblinks file
           cat weblinks | grep -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u; fi #displays the content
 shift $((OPTIND -1 )) #removes the options that have already been handled from 
-  ;;
+  exit 0;;
 esac
