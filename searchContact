@@ -1,0 +1,29 @@
+#!/bin/bash
+
+read -e -p "Enter the name of the contact to check for specific information: " name
+echo ""
+echo "Options"
+echo ""
+echo "[p] for phone number"
+echo ""
+echo "[m] for email"
+echo ""
+read -e -p "Choose an option: " selection
+
+
+case $selection in
+  p )
+    
+    awk 'BEGIN { FS=":"; print "Phone"\n-----------------} /'^$name'/ {print $2;}' ./contacts/contactList;;
+
+  m )
+    awk 'BEGIN {FS=":"; print "Email"\n-----------------} /'^$name'/ {print $3;}' ./contacts/contactList;;
+
+  * ) 
+    echo "Invalid Option: $OPTARG use: [pm]"
+    exit 1
+    ;;
+esac
+exit 0
+
+
