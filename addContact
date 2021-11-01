@@ -1,11 +1,12 @@
 #!/bin/bash
 
+#ask the user to enter a name, phone, and email
 echo ""
 read -e -p "Enter the name: " name
 read -e -p "Enter the phone number: " phone
 read -e -p "Enter the email: " email
 
-echo "$name:$phone:$email" >> ./contacts/contactList
+echo "$name:$phone:$email" >> ./contacts/contactList #send the output to the contactList
 echo ""
 echo "New contact list added"
 exit 0
