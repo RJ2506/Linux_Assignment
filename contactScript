@@ -6,7 +6,7 @@
 
 if [[ -d contacts ]]; then
     exit=0 #set the exit to 0 (success) 
-    while [[ $exit -ne 1 ]] ; do
+    while [[ $exit -ne 1 ]] ; do #display an option for the user
       clear
       echo "Please select an option"
       echo ""
@@ -24,30 +24,30 @@ if [[ -d contacts ]]; then
 
       case $choice in
         a )
-          ./addContact 
+          ./addContact #runs the addContact script
           exit 0
           ;;
 
 
         r )
-          ./removeContact 
+          ./removeContact #runs the removeContact script
           exit 0
           ;;
 
         s )
-          ./searchContact 
+          ./searchContact #runs the searchContact script
           exit 0
           ;;  
 
         d )
-          ./displayContact
+          ./displayContact #runs the displayContact script
           exit 0
           ;;
                   
         e )
-          exit=1 ;;
+          exit=1 ;;#exits the loop
       
-        \? )
+        \? )#sends an error if they enter a wrong option
           echo "Invalid option: please choose from [arse]" 
           exit 1
           ;;
@@ -56,7 +56,7 @@ if [[ -d contacts ]]; then
       done
       exit 0
     else 
-        
+        #if the directory doesn't exit create the directory and the file needed to run the program
         echo ""
         echo "creating a directory for contacts and a contactlist file..."
         mkdir contacts  && touch contactList
