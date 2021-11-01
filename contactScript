@@ -47,7 +47,7 @@ if [[ -d contacts ]]; then
         e )
           exit=1 ;;#exits the loop
       
-        \? )#sends an error if they enter a wrong option
+        * )#sends an error if they enter a wrong option
           echo "Invalid option: please choose from [arse]" 
           exit 1
           ;;
