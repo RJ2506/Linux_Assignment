@@ -3,7 +3,7 @@
 clear
 echo "" 
 #format the contact list using awk begin and end 
-awk 'BEGIN { FS=":"; print "Name\t Phone\t\t Mail\t\n------------------------------------------"; }
+awk 'BEGIN { FS=":"; print "Name\t Phone\t\t Email\t\n------------------------------------------"; }
 {print $1,"\t",$2,"\t",$3,"\t\t";}
 END { print "------------------------------------------" }' ./contacts/contactList
 exit 0
