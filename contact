@@ -24,7 +24,7 @@ if [[ -d contacts ]]; then
         echo "$name is deleted from the contact list"
 ;;
       s )#ask the user to enter a name to check for specific information
-        read -e -p "Enter the name: " name
+        read -ep "Enter the name: " name
         echo ""
         echo "Please choose an option"
         echo ""
@@ -34,7 +34,7 @@ if [[ -d contacts ]]; then
         echo ""
         echo ""[a] for address
         #read the option they choose
-        read -e -p "Choose an option: " selection
+        read -ep "Choose an option: " selection
         
         #created a case to display the phone or email
         case $selection in
@@ -61,7 +61,7 @@ if [[ -d contacts ]]; then
       d )#format the contact list using awk begin and end
          clear
          echo ""
-         awk 'BEGIN { FS=":"; print "Name           \t\t Phone\t\t Email\t\t Address\t\n-------------------------------------------------------";} {print $1, "\t\t\t", $2, "\t",$3,"\t\t",$4,\t\t;} END { print "-------------------------------------------------------"}' ./contacts/contactList ;;
+         awk 'BEGIN { FS=":"; print "Name           \t\t Phone Number \t\t Email              \t\t Address\t\n----------------------------------------------------------------------------------------------------------------";} {print $1, "\t\t", $2, "\t\t",$3,"\t\t",$4,"\t\t";} END { print "----------------------------------------------------------------------------------------------------------------"}' ./contacts/contactList ;;
 
       \? )#send an error message
          echo"Invalid Option: $OPTARG use: [pm]"
@@ -72,7 +72,6 @@ if [[ -d contacts ]]; then
 
 #if the user did not provide any options it will send a message to the user
 if [[ $OPTIND -eq 1 ]] ; then
-    clear
     echo ""
     echo "Please select an option"
     echo ""
