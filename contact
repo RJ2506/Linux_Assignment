@@ -55,7 +55,7 @@ if [[ -d contacts ]]; then
       d )#format the contact list using awk begin and end
          clear
          echo ""
-         awk 'BEGIN { FS=":"; print "Name\t Phone\t\t Email\t\n-------------------------------------------------------";} {print $1, "\t", $2, "\t",$3,"\t\t";} END { print "-------------------------------------------------------"}' ./contacts/contactList ;;
+         awk 'BEGIN { FS=":"; print "Name           \t\t\t Phone\t\t Email\t\n-------------------------------------------------------";} {print $1, "\t\t\t", $2, "\t",$3,"\t\t";} END { print "-------------------------------------------------------"}' ./contacts/contactList ;;
 
       \? )#send an error message
          echo"Invalid Option: $OPTARG use: [pm]"
