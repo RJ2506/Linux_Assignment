@@ -7,17 +7,18 @@ if [[ -d contacts ]]; then
       a )#add a new contact to the list
         echo ""
         #ask the use to enter the name,phone,email
-        read -e -p "Enter the name: " name
-        read -e -p "Enter the phone number: " phone
-        read -e -p "Enter the email: " email
+        read -ep "Enter the name: " name
+        read -ep "Enter the phone number: " phone
+        read -ep "Enter the email: " email
+        read -ep "Enter the address: " address
         #send the output to the contactList
-        echo "$name:$phone:$email" >> ./contacts/contactList
+        echo "$name:$phone:$email:$address" >> ./contacts/contactList
         echo ""
         echo "New contact list added"
 ;;
       r )#remove a contact from the list
         echo ""
-        read -e -p "Enter the name of the contact you want to remove: " name
+        read -ep "Enter the name of the contact you want to remove: " name
         #check the name in the contactList then delete it using the gawk (GNU AWK a built in function)
         gawk -i inplace '!/'$name'/' ./contacts/contactList
         echo "$name is deleted from the contact list"
@@ -31,6 +32,7 @@ if [[ -d contacts ]]; then
         echo ""
         echo "[m] for email"
         echo ""
+        echo ""[a] for address
         #read the option they choose
         read -e -p "Choose an option: " selection
         
@@ -45,6 +47,10 @@ if [[ -d contacts ]]; then
               #splits the text file by : then prints the emamil
              awk 'BEGIN { FS=":"; print "Email\n------------------";} /'^$name'/ {print $3;}' ./contacts/contactList;;
  
+            a )
+              echo ""
+              #splits the test file by : then prints the address
+              awk 'BEGIN { FS=":"; print "Address\n------------------";} /'^$name'/ {print $4;}' ./contacts/contactList;;
             * )
                #send an error message if theye enter a wrong option
               echo"Invalid Option: $OPTARG use: [pm]"
@@ -55,7 +61,7 @@ if [[ -d contacts ]]; then
       d )#format the contact list using awk begin and end
          clear
          echo ""
-         awk 'BEGIN { FS=":"; print "Name           \t\t\t Phone\t\t Email\t\n-------------------------------------------------------";} {print $1, "\t\t\t", $2, "\t",$3,"\t\t";} END { print "-------------------------------------------------------"}' ./contacts/contactList ;;
+         awk 'BEGIN { FS=":"; print "Name           \t\t Phone\t\t Email\t\t Address\t\n-------------------------------------------------------";} {print $1, "\t\t\t", $2, "\t",$3,"\t\t",$4,\t\t;} END { print "-------------------------------------------------------"}' ./contacts/contactList ;;
 
       \? )#send an error message
          echo"Invalid Option: $OPTARG use: [pm]"
