@@ -60,7 +60,7 @@ if [[ -d contacts ]]; then
 
       d )#format the contact list using awk begin and end
         
-        awk 'BEGIN {FS=":"; printf ("%-10s\t%-12s\t%-20s\t%s\n", "Name","Phone Number", "Email","Address") } {printf ("%-10s\t%-12s\t%-20s\t%s\n", $1,$2,$3,$4) }' ./contacts/contactList ;;           
+        awk 'BEGIN {FS=":"; printf ("%-10s\t%-12s\t%-20s\t%s\n-----------------------------------------------------------------------------\n", "Name","Phone Number", "Email","Address") } {printf ("%-10s\t%-12s\t%-20s\t%s\n", $1,$2,$3,$4) }' ./contacts/contactList ;;           
       
       h)    
         echo ""
