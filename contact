@@ -2,7 +2,7 @@
 
 #check the directory if it exist
 if [[ -d contacts ]]; then
-  while getopts ":arsd" opt; do
+  while getopts ":arsdh" opt; do
     case ${opt} in
       a )#add a new contact to the list
         echo ""
@@ -59,9 +59,23 @@ if [[ -d contacts ]]; then
          exit 0;;
 
       d )#format the contact list using awk begin and end
-         echo ""
-         awk 'BEGIN { FS=":"; print "Name           \t\t Phone Number\t\t Email              \t\t Address\t\n----------------------------------------------------------------------------------------------------------------";} {print $1, "\t\t\t", $2, "\t\t",$3,"\t\t",$4,"\t\t";} END { print "----------------------------------------------------------------------------------------------------------------"}' ./contacts/contactList ;;
-
+        
+        awk 'BEGIN {FS=":"; printf ("%-10s\t%-12s\t%-20s\t%s\n", "Name","Phone Number", "Email","Address") } {printf ("%-10s\t%-12s\t%-20s\t%s\n", $1,$2,$3,$4) }' ./contacts/contactList ;;           
+      
+      h)    
+        echo ""
+        echo "Options to Choose"
+        echo ""
+        echo "[-a] to add a new contact"
+        echo ""
+        echo "[-r] to remove a contact"
+        echo ""
+        echo "[-s] to seach for specifict information"
+        echo ""
+        echo "[-d] to dislpay the formatted contact list"
+        echo ""   
+        ;;
+   
       \? )#send an error message
          echo"Invalid Option: $OPTARG use: [pm]"
          exit 1;;
@@ -71,19 +85,10 @@ if [[ -d contacts ]]; then
 
 #if the user did not provide any options it will send a message to the user
 if [[ $OPTIND -eq 1 ]] ; then
-    echo ""
-    echo "Please select an option"
-    echo ""
-    echo "[-a] to add a new contact"
-    echo ""
-    echo "[-r] to remove a contact"
-    echo ""
-    echo "[-s] to seach for specifict information"
-    echo ""
-    echo "[-d] to dislpay the formatted contact list"
-    echo ""
+    echo "Requires an argument or type [-h] for help to show all the command"
     exit 0; fi
 shift $(( OPTIND -1 )) #removes the options that have already been handled 
+
 else
     
     echo ""
