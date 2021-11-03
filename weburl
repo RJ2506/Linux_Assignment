@@ -1,26 +1,21 @@
 #!/bin/bash
 
-#created a variable to store the first argument
-
-
-
-
 while getopts ":f:h" opt; do
    case ${opt} in
      f ) #store the output to a file when user enters the flag -f
-          url=$OPTARG
-          wget -O weblinks "$url" #download the html file from the url provided the store it to the weblinks file
+          url=${OPTARG}
+          wget -O weblinks "${url}" #download the html file from the url provided the store it to the weblinks file
           cat weblinks | grep -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u > display
           echo ""
           echo "url links have been saved to the display file"
           echo ""
           cat display #displays the output
-        exit 0 ;;
+;;
       h ) 
         echo "use [-f] to store the url into a file "
         ;;
            #propmpts a user an error message if they enter different flags
-      \? ) echo "Invalid option: $OPTARG use: [-h] for help" 
+      \? ) echo "Invalid option: ${OPTARG} use: [-h] for help" 
         exit 1 ;;
       : )
         echo " [-f] requires an argument after " ;;
@@ -32,7 +27,7 @@ while getopts ":f:h" opt; do
 #checks if the user provides any flag if not it will run this code
 if [[ $OPTIND -eq 1 ]] ; then
           url=$1 
-          wget -O weblinks "$url" #download the html file from the url provided then store it to the weblinks file
+          wget -O weblinks "${url}" #download the html file from the url provided then store it to the weblinks file
           cat weblinks | grep -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u
 
 exit 0; fi #displays the content
