@@ -10,7 +10,7 @@ while getopts ":n:h" opt; do
         ((num++))
       done < $file;; #redirects the user argument to read
     h ) #helps the user on which flag to use
-      echo "[-n] to display a line number for each line"
+      echo "[-n] file to display a line number for each line"
       ;;
     \? )#if the user type invalid option
       echo "Invalid Option: $OPTARG; type [-h] for help"
