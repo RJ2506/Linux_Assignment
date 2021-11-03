@@ -22,7 +22,7 @@ while getopts ":f:h" opt; do
       \? ) echo "Invalid option: $OPTARG use: [-h] for help" 
         exit 1 ;;
       : )
-        echo " [-f] requires an argument after "
+        echo " [-f] requires an argument after " ;;
     esac
   exit 0
   shift $(( OPTIND -1 ))
