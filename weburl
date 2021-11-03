@@ -1,13 +1,14 @@
 #!/bin/bash
 
 #created a variable to store the first argument
-url=$1
+
 
 
 
 while getopts ":f:h" opt; do
    case ${opt} in
      f ) #store the output to a file when user enters the flag -f
+          url=$OPTARG
           wget -O weblinks "$url" #download the html file from the url provided the store it to the weblinks file
           cat weblinks | grep -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u > display
           echo ""
@@ -29,7 +30,8 @@ while getopts ":f:h" opt; do
   done
   
 #checks if the user provides any flag if not it will run this code
-if [[ $OPTIND -eq 1 ]] ; then 
+if [[ $OPTIND -eq 1 ]] ; then
+          url=$1 
           wget -O weblinks "$url" #download the html file from the url provided then store it to the weblinks file
           cat weblinks | grep -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u
 
