@@ -1,9 +1,30 @@
 #!/bin/bash
-num=1 
-filename="$1"
-# used read to read each line of the filename
-while read line;do
-  echo $num\. $line
-  ((num++))
-  
-done < $filename #redirects the filename to the line in while loop
+#use the getopts to check if the flag is in the program else prompt an error
+while getopts ":n:h" opt; do
+  case ${opt} in
+    n )#if the user wants to view the file content with number line
+      num=1
+      file=$OPTARG
+      while read line;do #reads the line of the file given by the user
+        echo $num\. $line
+        ((num++))
+      done < $file;; #redirects the user argument to read
+    h ) #helps the user on which flag to use
+      echo "[-n] to display a line number for each line"
+      ;;
+    \? )#if the user type invalid option
+      echo "Invalid Option: $OPTARG; type [-h] for help"
+      exit 1;;
+    : )#if the user forgot to enter an argument after they type -n
+      echo "[-n] requires an argument "
+      exit 1;;    
+  esac
+exit 0
+shift $(( OPTIND -1 )) #shift the option back to $1
+done
+
+if [[ $OPTIND -eq 1 ]]; then #if they don't want to display the contents with number line
+  while read line;do
+    echo $line
+  done < $1 ;
+fi
