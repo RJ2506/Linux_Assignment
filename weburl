@@ -18,10 +18,11 @@ while getopts ":f:h" opt; do
       \? ) echo "Invalid option: ${OPTARG} use: [-h] for help" 
         exit 1 ;;
       : )
-        echo " [-f] requires an argument after " ;;
+        echo " [-f] requires an argument after " 
+        exit 1 ;;
     esac
   exit 0
-  shift $(( OPTIND -1 ))
+  shift $(( OPTIND -1 )) # shift the argument back
   done
   
 #checks if the user provides any flag if not it will run this code
@@ -31,4 +32,4 @@ if [[ $OPTIND -eq 1 ]] ; then
           cat weblinks | grep -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u
 
 exit 0; fi #displays the content
-  
+
