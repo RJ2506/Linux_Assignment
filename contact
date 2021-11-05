@@ -33,6 +33,7 @@ if [[ -d contacts ]]; then
         echo "[m] for email"
         echo ""
         echo ""[a] for address
+        echo ""
         #read the option they choose
         read -ep "Choose an option: " selection
         
@@ -53,7 +54,7 @@ if [[ -d contacts ]]; then
               awk 'BEGIN { FS=":"; print "Address\n------------------";} /'^$name'/ {print $4;}' ./contacts/contactList;;
             * )
                #send an error message if theye enter a wrong option
-              echo"Invalid Option: $OPTARG use: [pm]"
+              echo"Invalid Option: $OPTARG use: [pma]"
               exit 1;;
          esac
          exit 0;;
@@ -77,7 +78,7 @@ if [[ -d contacts ]]; then
         ;;
    
       \? )#send an error message
-         echo"Invalid Option: $OPTARG use: [pm]"
+         echo "Invalid Option: $OPTARG use: [-h]"
          exit 1;;
     esac
     exit 0
@@ -86,7 +87,7 @@ if [[ -d contacts ]]; then
 #if the user did not provide any options it will send a message to the user
 if [[ $OPTIND -eq 1 ]] ; then
     echo "Requires an argument or type [-h] for help to show all the command"
-    exit 0; fi
+    exit 1; fi
 shift $(( OPTIND -1 )) #removes the options that have already been handled 
 
 else
