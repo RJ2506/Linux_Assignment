@@ -26,5 +26,6 @@ done
 if [[ $OPTIND -eq 1 ]]; then #if they don't want to display the contents with number line
   while read line;do
     echo $line
-  done < $1 ;
+  done < $1 
+exit 0;
 fi
