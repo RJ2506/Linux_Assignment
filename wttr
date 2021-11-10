@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl https://wttr.in/ > /home/vagrant/Documents/week10/weather_report
