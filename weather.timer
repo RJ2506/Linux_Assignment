@@ -1,0 +1,10 @@
+[Unit]
+Description=Set the timer to update weather report
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+
+[Install]
+WantedBy=timers.target
