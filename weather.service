@@ -1,0 +1,9 @@
+[Unit]
+Description=Checks the weather from https://wttr.in/
+
+[Service]
+Persistent=true
+ExecStart=/home/vagrant/Documents/week10/wttr
+
+[Install]
+WantedBy=multi-user.target
