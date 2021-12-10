@@ -1,0 +1,15 @@
+#!/bin/bash
+
+while getopts ":d:" opt; do
+  case ${opt} in
+    
+    d ) #create an archive for the file 
+      file=$OPTARG 
+      time= date +%a-%d-%b-%Y-%T 
+      tar -czf backup-$time.tar.gz $file;;
+    \? ) #invalid option
+      echo "Invalid Option: $OPTARG"
+      exit 1
+  esac
+  exit 0 
+done  
