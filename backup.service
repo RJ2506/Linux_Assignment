@@ -1,0 +1,11 @@
+#!/bin/bash
+
+[Unit]
+Description=create a backup archive
+After=network-online.target
+[Service]
+ExecStart=/home/vagrant/exam/bckup
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
