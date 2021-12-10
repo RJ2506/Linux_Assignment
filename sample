@@ -1,0 +1,4 @@
+#!/bin/bash
+
+if [[ ! -d list_dict ]]; then
+  echo "doesn't exist" ;fi

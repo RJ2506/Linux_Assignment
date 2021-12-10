@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#URL to read
+
+
+#use wget to download the page in the file 
+
+
+while getopts ":f" opt; do
+  case ${opt} in
+    f  )  wget -O weblinks "$1" && cat weblinks | grep \
+          -Eoi "(http|https)://[a-zA-Z0-9./]*" | sort -u    
+        ;;
+    :  ) wget -O weblinks "$1" && cat weblinks | grep \
+          -Eoi "(http|https)://[a-zA-z0-9./]*" | sort -u
+        ;;
+    /? ) 
+        echo "invalid Option: -$OPTARG" 1>&2
+        exit 1
+        ;;
+
+  esac
+done
+shift $((OPTIND -1))
+
